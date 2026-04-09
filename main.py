@@ -277,6 +277,9 @@ class App:
         self._body_text.bind('<Control-i>', lambda e: (self._toggle_format('italic'), 'break'))
         self._body_text.bind('<Control-u>', lambda e: (self._toggle_format('underline'), 'break'))
 
+        # Right-click context menu
+        self._body_text.bind('<Button-3>', lambda e: self._show_context_menu(e, self._body_text))
+
     # ---- Tab 3: Recipients (Import CSV) --------------------------------
 
     def _build_recipients_tab(self):
@@ -556,6 +559,15 @@ class App:
         for tag in list(self._link_hrefs.keys()):
             self._body_text.tag_remove(tag, start, end)
         self._body_text.focus_set()
+
+    def _show_context_menu(self, event, widget):
+        menu = tk.Menu(self.root, tearoff=0)
+        menu.add_command(label='Cut',        command=lambda: widget.event_generate('<<Cut>>'))
+        menu.add_command(label='Copy',       command=lambda: widget.event_generate('<<Copy>>'))
+        menu.add_command(label='Paste',      command=lambda: widget.event_generate('<<Paste>>'))
+        menu.add_separator()
+        menu.add_command(label='Select All', command=lambda: widget.tag_add('sel', '1.0', 'end'))
+        menu.tk_popup(event.x_root, event.y_root)
 
     def _has_formatting(self) -> bool:
         """Return True if any formatting tags are present in the body."""
