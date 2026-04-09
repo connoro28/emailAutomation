@@ -1,0 +1,4 @@
+# Email Automation — dependencies
+# No third-party packages required.
+# Uses Python standard library only: tkinter, smtplib, ssl, csv, json, threading, re.
+# Requires Python 3.10+

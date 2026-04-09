@@ -1,0 +1,9 @@
+{
+  "server": "smtp.gmail.com",
+  "port": "587",
+  "use_ssl": false,
+  "username": "connorgator06@gmail.com",
+  "password": "vzsx jpbg ffqr zelo",
+  "from_name": "Zoox",
+  "delay_ms": "300"
+}
